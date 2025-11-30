@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
+    username: postgres.oelmefqcgjtjcimlwyay
+    password: 1234
+
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 10000
+      connection-timeout: 30000
+      max-lifetime: 60000
+
+  sql:
+    init:
+      mode: never        # ⛔ data.sql 자동 실행 금지
+      encoding: UTF-8
+
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: false  # ❌ data.sql 안 쓰면 false로
+    hibernate:
+      ddl-auto: update   # ✔ 테이블 유지하며 변경사항만 업데이트
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080
