@@ -14,7 +14,11 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000") // React 실행 주소
+                        .allowedOrigins(
+                                "http://localhost:3000",
+                                "https://enchanting-hope-production.up.railway.app" // Railway 프론트엔드 URL
+                        ) // React 실행 주소
+
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
