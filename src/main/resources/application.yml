@@ -1,9 +1,11 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
-    username: postgres.oelmefqcgjtjcimlwyay
-    password: 1234
+
+    # 👉 Railway 환경변수에서 DB 정보를 읽어옴
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
     hikari:
       maximum-pool-size: 5
@@ -14,14 +16,14 @@ spring:
 
   sql:
     init:
-      mode: never        # ⛔ data.sql 자동 실행 금지
+      mode: never
       encoding: UTF-8
 
   jpa:
     open-in-view: false
-    defer-datasource-initialization: false  # ❌ data.sql 안 쓰면 false로
+    defer-datasource-initialization: false
     hibernate:
-      ddl-auto: update   # ✔ 테이블 유지하며 변경사항만 업데이트
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
